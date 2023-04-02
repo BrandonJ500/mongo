@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/test', {useNewUrlParser: true, useUnifiedTopology:true})
+mongoose.connect('mongodb://127.0.0.1:27017/movieApp', {useNewUrlParser: true, useUnifiedTopology:true})
 .then(()=>{
     console.log("connection open")
 })
@@ -15,4 +15,6 @@ const movieSchema = new mongoose.Schema({
     rating: String
 })
 
-const Movie = moongoose.model("Movie", movieSchema);
+const Movie = mongoose.model("Movie", movieSchema);
+const amadeus = new Movie({title: "Amadeus", year: 1986, score: 9.2, rating: "R"});
+
