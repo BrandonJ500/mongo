@@ -44,12 +44,17 @@ productSchema.methods.greet = function(){
     console.log("Hellohihello");
     console.log(`- from ${this.name}`)
 }
-
+productSchema.methods.toggleOnSale = function(){
+    this.onSale = !this.onSale;
+   return this.save();
+}
 const Product = mongoose.model("Product", productSchema);
 
 const findProduct = async () => {
    const foundProduct = await Product.findOne({name: "bike helmet"})
-   foundProduct.greet();
+   console.log(foundProduct)
+   await foundProduct.toggleOnSale();
+   console.log(foundProduct)
 }
    
 findProduct()
