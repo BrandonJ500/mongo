@@ -23,13 +23,23 @@ const productSchema = new mongoose.Schema({
         default: false
     },
     catagories: [String],
+    qty: {
+        online: {
+            type:Number,
+            default:0
+        },
+        inStore: {
+            type:Number,
+            default: 0
+        }
+    }
 
 });
 
 
 const Product = mongoose.model("Product", productSchema);
 
-const bike = new Product({ name: "Mountain Bike", price: 19.50, color:"red", catagories: [] });
+const bike = new Product({ name: "Mountain Bike", price: 19.50, color:"red", catagories: ["cycling","Safety"], qty: {online:5,inStore:10}});
 
 bike.save()
     .then((data) => {
