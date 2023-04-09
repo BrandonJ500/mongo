@@ -42,6 +42,7 @@ const productSchema = new mongoose.Schema({
 
 productSchema.methods.greet = function(){
     console.log("Hellohihello");
+    console.log(`- from ${this.name}`)
 }
 
 const Product = mongoose.model("Product", productSchema);
