@@ -40,9 +40,9 @@ const productSchema = new mongoose.Schema({
 
 });
 
-productSchema.methods.greet = function(){
-    console.log("Hellohihello");
-    console.log(`- from ${this.name}`)
+productSchema.methods.addcatagory = function(newCat){
+    this.catagories.push(newCat)
+    return this.save();
 }
 productSchema.methods.toggleOnSale = function(){
     this.onSale = !this.onSale;
@@ -55,6 +55,8 @@ const findProduct = async () => {
    console.log(foundProduct)
    await foundProduct.toggleOnSale();
    console.log(foundProduct)
+   await foundProduct.addcatagory("Outdoors")
+   console.log(foundProduct);
 }
    
 findProduct()
