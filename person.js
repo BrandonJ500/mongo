@@ -8,15 +8,22 @@ mongoose.connect('mongodb://127.0.0.1:27017/App', { useNewUrlParser: true, useUn
     })
 
 
-    const personSchema = mongoose.Schema({
-        first:String,
-        last:String
-    })
+const personSchema = mongoose.Schema({
+    first: String,
+    last: String
+})
 
-    personSchema.virtual("fullName").get(function(){
-        return `${this.first} ${this.last}`
-    })
+personSchema.virtual("fullName").get(function () {
+    return `${this.first} ${this.last}`
+})
 
-    const Person = mongoose.model("Person", personSchema);
+personSchema.pre("save", async function () {
+    console.log("about to save")
+})
 
-    
+personSchema.post("save", async function () {
+    console.log("that just saved")
+})
+
+const Person = mongoose.model("Person", personSchema);
+
